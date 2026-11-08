@@ -1,0 +1,45 @@
+# Vùng semantic đã hiệu chỉnh theo occupancy grid Small House.
+# Tọa độ dùng frame `map`, đơn vị mét. Node sẽ kiểm tra và dịch điểm tới
+# ô free gần nhất nếu tâm vùng rơi sát vật cản.
+map_yaml: ../maps/small_house_slam.yaml
+zones:
+  bedroom:
+    id: 1
+    label: "Bedroom"
+    aliases: ["phòng ngủ", "phong ngu"]
+    target: [-6.10, 0.25, 0.0]
+    polygon:
+      - [-8.95, -0.90]
+      - [-2.80, -0.90]
+      - [-2.80, 5.35]
+      - [-8.95, 5.35]
+  living_room:
+    id: 2
+    label: "Living Room"
+    aliases: ["phòng khách", "phong khach"]
+    target: [-0.15, -3.55, 1.57]
+    polygon:
+      - [-2.20, -4.55]
+      - [4.15, -4.55]
+      - [4.15, 1.60]
+      - [-2.20, 1.60]
+  kitchen:
+    id: 3
+    label: "Kitchen"
+    aliases: ["phòng bếp", "phong bep", "gian bếp", "gian bep"]
+    target: [6.20, -1.45, 0.0]
+    polygon:
+      - [4.35, -4.55]
+      - [9.25, -4.55]
+      - [9.25, 2.15]
+      - [4.35, 2.15]
+  fitness_area:
+    id: 4
+    label: "Fitness Area"
+    aliases: ["khu vực tập thể hình", "khu vuc tap the hinh", "đi đến chỗ tập", "di den cho tap", "chỗ tập", "cho tap"]
+    target: [3.10, 2.20, 1.57]
+    polygon:
+      - [1.55, 1.75]
+      - [4.45, 1.75]
+      - [4.45, 5.25]
+      - [1.55, 5.25]
