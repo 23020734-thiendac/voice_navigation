@@ -1,9 +1,5 @@
 # TurtleBot 4 – Week 7: Semantic Map và Voice Navigation
 
-Repository này chỉ chứa các thành phần của tuần 7: phân vùng bản đồ Small House, gán nhãn khu vực và điều hướng TurtleBot 4 bằng giọng nói tiếng Việt.
-
-Không đưa vào repository: package tuần trước, file báo cáo, dataset, kết quả train, `build/`, `install/`, `log/` và `__pycache__/`.
-
 ## Pipeline
 
 ```text
@@ -48,17 +44,6 @@ tb4_week7/
 ```
 
 Các file báo cáo không thuộc repository này.
-
-## Khu vực và tọa độ đích
-
-| Tên Semantic | Nhãn RViz | Điểm đích map | Ý nghĩa |
-|---|---|---:|---|
-| `bedroom` | Bedroom | `(-6.10, 0.25)` | vùng trống trung tâm phòng ngủ |
-| `living_room` | Living Room | `(-0.15, -3.55)` | khoảng giữa sofa và TV |
-| `kitchen` | Kitchen | `(6.20, -1.45)` | vùng trống trung tâm gian bếp |
-| `fitness_area` | Fitness Area | `(3.10, 2.20)` | phía trước Fitness Equipment |
-
-Các điểm được kiểm tra trên `small_house_slam.pgm`; node tự dịch điểm tới ô free gần nhất nếu điểm cấu hình nằm sát vật cản.
 
 ## Yêu cầu môi trường
 
@@ -157,20 +142,3 @@ Robot sẽ đi lần lượt `Bedroom → Living Room → Kitchen`. Khi nói `D�
 | `/semantic_zones/route` | `visualization_msgs/MarkerArray` | các đích của chuỗi lệnh |
 | `/navigate_to_pose` | `nav2_msgs/action/NavigateToPose` | action Nav2 nhận từng đích |
 | `/cmd_vel` | `geometry_msgs/Twist` | vận tốc điều khiển robot |
-
-## Tạo lại ảnh phân vùng
-
-```bash
-cd ~/ros2_ws/src/voice_navigation/tb4_week7
-a=tools/generate_segmented_map.py
-python3 "$a"
-```
-
-File `small_house_regions.pgm` là ảnh kiểm tra trực quan. Bản đồ Nav2 vẫn là `small_house_slam.pgm`; polygon và tọa độ semantic được khai báo trong `config/zones.yaml`.
-
-## Ghi chú
-
-- Nếu microphone không phải thiết bị số 0, truyền thêm `voice_device:=1` hoặc chỉ số tương ứng.
-- Các terminal phải dùng cùng `ROS_DOMAIN_ID`.
-- Có thể tăng `command_hold_sec:=3.5` nếu câu chuỗi bị cắt.
-- Repository này chỉ dùng bản đồ Small House, không dùng map maze.
