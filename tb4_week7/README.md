@@ -8,40 +8,7 @@ Microphone → Vosk → câu lệnh tiếng Việt → tìm khu vực
 → NavigateToPose → Nav2 → TurtleBot 4 trong Gazebo
 ```
 
-Các vùng Semantic gồm `Bedroom`, `Living Room`, `Kitchen` và `Fitness Area`. Người dùng nói tiếng Việt; nhãn hiển thị trên RViz dùng tiếng Anh.
-
-## Cấu trúc package
-
-```text
-tb4_week7/
-├── config/
-│   └── zones.yaml                         # polygon, nhãn và tọa độ đích
-├── launch/
-│   ├── week7_voice_navigation.launch.py   # launch tổng tuần 7
-│   └── small_house_sim.launch.py          # Gazebo Small House, không dock
-├── maps/
-│   ├── small_house_slam.pgm               # bản đồ điều hướng
-│   ├── small_house_slam.yaml
-│   ├── small_house_regions.pgm            # ảnh phân vùng trực quan
-│   └── small_house_regions.yaml
-├── rviz/
-│   └── semantic_navigation.rviz
-├── simulation/
-│   ├── worlds/small_house.world           # world Small House
-│   ├── models/                            # model và texture world tham chiếu
-│   └── photos/                            # texture của world
-├── tb4_week7/
-│   ├── map_segmentation_node.py           # semantic map và marker vùng
-│   ├── voice_recognition_node.py          # microphone + Vosk
-│   ├── voice_navigation_node.py           # phân tích lệnh + Nav2
-│   ├── voice_monitor_node.py              # in lệnh ra terminal
-│   ├── initial_pose_publisher.py          # pose ban đầu cho AMCL
-│   └── wheel_drop_state_publisher.py      # TF joint hỗ trợ mô phỏng
-├── tools/generate_segmented_map.py        # tạo small_house_regions.pgm
-├── package.xml
-├── setup.py
-└── README.md
-```
+Các vùng Semantic gồm `Bedroom`, `Living Room`, `Kitchen` và `Fitness Area`.
 
 
 ## Yêu cầu môi trường
@@ -95,20 +62,6 @@ ros2 launch tb4_week7 week7_voice_navigation.launch.py \
 
 Launch tự mở Gazebo Small House, spawn TurtleBot 4, khởi động localization, Nav2, semantic map, nhận dạng giọng nói và RViz. World, model, texture và launch mô phỏng cần thiết đã nằm trong `tb4_week7/simulation`; không cần package gesture tuần 6 và không spawn dock sạc.
 
-Nếu chỉ muốn kiểm tra node bằng văn bản, dùng:
-
-```bash
-ros2 launch tb4_week7 week7_voice_navigation.launch.py \
-  voice_backend:=text show_rviz:=true
-```
-
-Sau đó publish lệnh:
-
-```bash
-ros2 topic pub --once /voice_command_text std_msgs/msg/String \
-  "{data: 'Đi từ phòng ngủ qua phòng khách rồi tới phòng bếp'}"
-```
-
 ## Câu lệnh giọng nói
 
 Lệnh đơn:
@@ -141,3 +94,35 @@ Robot sẽ đi lần lượt `Bedroom → Living Room → Kitchen`. Khi nói `D�
 | `/semantic_zones/route` | `visualization_msgs/MarkerArray` | các đích của chuỗi lệnh |
 | `/navigate_to_pose` | `nav2_msgs/action/NavigateToPose` | action Nav2 nhận từng đích |
 | `/cmd_vel` | `geometry_msgs/Twist` | vận tốc điều khiển robot |
+
+## Cấu trúc package
+
+```text
+tb4_week7/
+├── config/
+│   └── zones.yaml                         # polygon, nhãn và tọa độ đích
+├── launch/
+│   ├── week7_voice_navigation.launch.py   # launch tổng tuần 7
+│   └── small_house_sim.launch.py          # Gazebo Small House, không dock
+├── maps/
+│   ├── small_house_slam.pgm               # bản đồ điều hướng
+│   ├── small_house_slam.yaml
+│   ├── small_house_regions.pgm            # ảnh phân vùng trực quan
+│   └── small_house_regions.yaml
+├── rviz/
+│   └── semantic_navigation.rviz
+├── simulation/
+│   ├── worlds/small_house.world           # world Small House
+│   ├── models/
+│   └── photos/
+├── tb4_week7/
+│   ├── map_segmentation_node.py           # semantic map và marker vùng
+│   ├── voice_recognition_node.py          # microphone + Vosk
+│   ├── voice_navigation_node.py           # phân tích lệnh + Nav2
+│   ├── voice_monitor_node.py              # chuyển giọng nói thành văn bản hiển thị để quan sát
+│   └── initial_pose_publisher.py          # pose ban đầu cho AMCL
+├── tools/generate_segmented_map.py        # tạo small_house_regions.pgm
+├── package.xml
+├── setup.py
+└── README.md
+```
