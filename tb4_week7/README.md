@@ -1,13 +1,5 @@
 # TurtleBot 4 – Week 7: Semantic Map và Voice Navigation
 
-## Pipeline
-
-```text
-PGM/YAML → phân vùng Semantic → nhãn khu vực trên RViz
-Microphone → Vosk → câu lệnh tiếng Việt → tìm khu vực
-→ NavigateToPose → Nav2 → TurtleBot 4 trong Gazebo
-```
-
 Các vùng Semantic gồm `Bedroom`, `Living Room`, `Kitchen` và `Fitness Area`.
 
 
