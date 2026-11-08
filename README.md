@@ -43,7 +43,6 @@ tb4_week7/
 └── README.md
 ```
 
-Các file báo cáo không thuộc repository này.
 
 ## Yêu cầu môi trường
 
