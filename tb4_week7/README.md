@@ -2,6 +2,8 @@
 
 Các vùng Semantic gồm `Bedroom`, `Living Room`, `Kitchen` và `Fitness Area`.
 
+![Semantic Map Small House](docs/semantic_map.png)
+
 
 ## Yêu cầu môi trường
 
