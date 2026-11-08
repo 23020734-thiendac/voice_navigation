@@ -95,7 +95,7 @@ tb4_week7/
 │   └── zones.yaml                         # polygon, nhãn và tọa độ đích
 ├── launch/
 │   ├── week7_voice_navigation.launch.py   # launch tổng tuần 7
-│   └── small_house_sim.launch.py          # Gazebo Small House, không dock
+│   └── small_house_sim.launch.py
 ├── maps/
 │   ├── small_house_slam.pgm               # bản đồ điều hướng
 │   ├── small_house_slam.yaml
